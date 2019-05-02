@@ -22,5 +22,13 @@ RUN \
       ./configure --add-module=/opt/nginx/nginx-rtmp-module --with-http_ssl_module && \
       make && \
       make install
+      
+RUN \
+      apt-get install -y ffmpeg
+ADD convert.sh /convert.sh
+RUN chmod 744 /convert.sh
+RUN mkdir -p /videos/{dash,hls,tmp,vod}
+RUN chmod 744 /videos/* -R
+RUN chown nobody:root /videos/* -R
 
 ENTRYPOINT ["/usr/local/nginx/sbin/nginx"]

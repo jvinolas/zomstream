@@ -2,6 +2,7 @@
 
 # imports
 import flask
+from flask_cors import CORS
 import pathlib
 import yaml
 import sys
@@ -46,6 +47,7 @@ def getStreamNames(url):
 
 streamList = []
 frontend = flask.Flask(__name__)
+CORS(frontend)
 
 @frontend.before_first_request
 def populate_streamlist():

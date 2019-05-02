@@ -27,6 +27,11 @@ this components provides the visible website containing a overview of the runnin
 ## How to use this
 We tested this with OBS and ffmpeg but any steaming source supporting rtmp should work just fine.
 
+With ffmpeg: 
+```
+ffmpeg -re -f lavfi -i testsrc -c:v libx264 -b:v 160k -preset ultrafast -b:a 90k -c:a libfdk_aac -b:a 12k -s 1920x1080 -x264opts keyint=50 -g 25 -pix_fmt yuv420p -f flv "rtmp://yourserver.com/live/yourstreamname?pass=12345678"
+```
+
 ### Setup instructions
 * clone the repository
 * copy the file `frontend/config.example.yml` to `frontend/config.yml`
